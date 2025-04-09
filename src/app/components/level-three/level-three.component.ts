@@ -1,39 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameService } from '../../services/game.service';
-
-// IMPORTS NECESARIOS
+import { WordChallenge } from '../../models/word-chanllenge';  // Asegúrate de que esta ruta sea correcta
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-level-three',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './level-three.component.html',
-  styleUrl: './level-three.component.scss'
+  styleUrls: ['./level-three.component.scss']
 })
 export class Level3Component implements OnInit {
-  hint = '';
-  correctWord = '';
-  userInput = '';
+  hint: string = '';
+  correctWord: string = '';
+  userInput: string = '';
+  palabra: WordChallenge | null = null; 
 
   constructor(
     private gameService: GameService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.gameService.getLevelData(3).subscribe(data => {
-      this.hint = data.hint;
-      this.correctWord = data.answer;
+    this.obtenerPalabraNivel3();
+  }
+
+  obtenerPalabraNivel3(): void {
+    this.gameService.getLevelData(3).subscribe((data: WordChallenge[]) => {
+      this.palabra = this.obtenerPalabraAleatoria(data);
+      if (this.palabra) {
+        this.correctWord = this.palabra.anwser ?? '';
+        this.hint = this.palabra.pista ?? '';
+      }
     });
   }
 
-  checkAnswer() {
-    alert(this.userInput.toLowerCase() === this.correctWord ? '¡Correcto!' : 'Sigue intentando');
+  obtenerPalabraAleatoria(palabras: WordChallenge[]): WordChallenge | null {
+    const indiceAleatorio = Math.floor(Math.random() * palabras.length);
+    return palabras.length > 0 ? palabras[indiceAleatorio] : null;
   }
 
-  goToMenu() {
+  checkAnswer(): void {
+    const userInputTrimmed = this.userInput.trim().toLowerCase();
+    const correctWordTrimmed = this.correctWord.trim().toLowerCase();
+    
+    if (userInputTrimmed === correctWordTrimmed) {
+      alert('¡Correcto!');
+    } else {
+      alert('Sigue intentando');
+    }
+  }
+
+  goToMenu(): void {
     this.router.navigate(['/']);
   }
 }

@@ -1,4 +1,30 @@
 // level-two.component.scss - Estilos completos para Nivel 2
+/* Contenedor para la imagen de la palabra */
+.image-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .word-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Estilos para la pista */
+.clue-container {
+  margin-top: 20px;
+  text-align: center;
+  
+  .clue-text {
+    font-size: 1.2rem;
+    color: #777;
+    font-style: italic;
+  }
+}
 
 * {
     margin: 0;

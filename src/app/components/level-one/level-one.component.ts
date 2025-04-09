@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../services/game.service';
 import { WordChallenge } from '../../models/word-chanllenge';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
+  imports: [FormsModule],
   selector: 'app-palabra',
   templateUrl: './level-one.component.html',
   styleUrls: ['./level-one.component.scss'],

@@ -4,5 +4,5 @@ export interface WordChallenge {
   nivel: number;
   pista?: string;
   imagen_url?: string;
-  answer?: string;
+  anwser?: string;
 }

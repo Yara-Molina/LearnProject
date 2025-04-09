@@ -1,34 +1,45 @@
 <div class="level-container">
-    <div class="game-header">
-      <h1>Nivel 2</h1>
-      <p class="subtitle">Completa la palabra con la letra correcta</p>
+  <div class="game-header">
+    <h1>Nivel 2</h1>
+    <p class="subtitle">Completa la palabra con la letra correcta</p>
+  </div>
+  
+  <div class="game-content">
+    <!-- Mostrar la imagen si está disponible -->
+    <div *ngIf="imagenUrl" class="image-container">
+      <img [src]="imagenUrl" alt="Imagen de la palabra" class="word-image" />
     </div>
-    
-    <div class="game-content">
-      <div class="word-display">
-        <p class="word-with-blank">{{ wordWithBlank }}</p>
+
+    <!-- Mostrar la palabra con el espacio en blanco -->
+    <div class="word-display">
+      <p class="word-with-blank">{{ palabra?.texto }}</p>
+    </div>
+
+    <!-- Mostrar la pista si está disponible -->
+    <div *ngIf="clue" class="clue-container">
+      <p class="clue-text">{{ clue }}</p>
+    </div>
+
+    <div class="input-container">
+      <div class="letter-input-wrapper">
+        <input 
+          type="text" 
+          maxlength="1" 
+          [(ngModel)]="userInput" 
+          class="letter-input" 
+          placeholder="?" 
+          autocomplete="off"
+          autofocus />
       </div>
       
-      <div class="input-container">
-        <div class="letter-input-wrapper">
-          <input 
-            type="text" 
-            maxlength="1" 
-            [(ngModel)]="userInput" 
-            class="letter-input" 
-            placeholder="?" 
-            autocomplete="off"
-            autofocus />
-        </div>
-        
-        <button (click)="checkAnswer()" class="submit-btn">Validar</button>
-      </div>
-    </div>
-    
-    <div class="game-footer">
-      <button (click)="goToMenu()" class="back-btn">
-        <span class="back-icon">🔙</span>
-        <span>Volver al menú</span>
-      </button>
+      <button (click)="checkAnswer()" class="submit-btn">Validar</button>
     </div>
   </div>
+  
+  <div class="game-footer">
+    <button (click)="goToMenu()" class="back-btn">
+      <span class="back-icon">🔙</span>
+      <span>Volver al menú</span>
+    </button>
+  </div>
+</div>

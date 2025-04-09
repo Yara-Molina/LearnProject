@@ -1,37 +1,59 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../services/game.service';
-import { HttpClient } from '@angular/common/http';
+import { WordChallenge } from '../../models/word-chanllenge';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-level-two',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './level-two.component.html',
-  styleUrl: './level-two.component.scss'
+  styleUrls: ['./level-two.component.scss']
 })
-
 export class Level2Component implements OnInit {
-  wordWithBlank = '';
-  correctLetter = '';
-  userInput = '';
+  palabra: WordChallenge | null = null;
+  correctLetter: string = '';
+  userInput: string = '';
+  clue: string = '';
+  imagenUrl: string = '';
 
   constructor(
     private gameService: GameService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.gameService.getLevelData(2).subscribe(data => {
-      this.wordWithBlank = data.word_with_blank;
-      this.correctLetter = data.answer;
+    this.obtenerPalabraNivel2();
+  }
+
+  obtenerPalabraNivel2(): void {
+    this.gameService.getLevelData(2).subscribe((data) => {
+      console.log(data);
+      this.palabra = this.obtenerPalabraAleatoria(data);
+      if (this.palabra) {
+        this.correctLetter = this.palabra.anwser ?? '';
+        this.clue = this.palabra.pista ?? '';
+        this.imagenUrl = this.palabra.imagen_url ?? '';
+      }
     });
   }
 
+  obtenerPalabraAleatoria(palabras: WordChallenge[]): WordChallenge | null {
+    const indiceAleatorio = Math.floor(Math.random() * palabras.length);
+    return palabras.length > 0 ? palabras[indiceAleatorio] : null;
+  }
+
   checkAnswer() {
-    alert(this.userInput.toLowerCase() === this.correctLetter ? '¡Correcto!' : 'Intenta de nuevo');
+    const userInputTrimmed = this.userInput.trim().toLowerCase();
+    const correctLetterTrimmed = this.correctLetter.trim().toLowerCase();
+    
+    if (userInputTrimmed === correctLetterTrimmed) {
+      alert('¡Correcto!');
+    } else {
+      alert('Intenta de nuevo');
+    }
   }
 
   goToMenu() {

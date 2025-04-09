@@ -1,0 +1,32 @@
+<div class="level-container">
+    <div class="game-header">
+      <h1>Nivel 1</h1>
+      <p class="subtitle">Selecciona la respuesta correcta</p>
+    </div>
+    
+    <div class="game-content">
+      <div class="image-container">
+        <img [src]="imageUrl" alt="Imagen de la palabra" class="question-image" />
+      </div>
+      
+      <div class="question-container">
+        <p class="question">{{ question }}</p>
+      </div>
+      
+      <div class="options-container">
+        <button 
+          *ngFor="let option of options" 
+          (click)="checkAnswer(option)" 
+          class="option-btn">
+          {{ option }}
+        </button>
+      </div>
+    </div>
+    
+    <div class="game-footer">
+      <button (click)="goToMenu()" class="back-btn">
+        <span class="back-icon">🔙</span>
+        <span>Volver al menú</span>
+      </button>
+    </div>
+  </div>

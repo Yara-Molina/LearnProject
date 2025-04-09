@@ -1,0 +1,34 @@
+<div class="level-container">
+    <div class="game-header">
+      <h1>Nivel 2</h1>
+      <p class="subtitle">Completa la palabra con la letra correcta</p>
+    </div>
+    
+    <div class="game-content">
+      <div class="word-display">
+        <p class="word-with-blank">{{ wordWithBlank }}</p>
+      </div>
+      
+      <div class="input-container">
+        <div class="letter-input-wrapper">
+          <input 
+            type="text" 
+            maxlength="1" 
+            [(ngModel)]="userInput" 
+            class="letter-input" 
+            placeholder="?" 
+            autocomplete="off"
+            autofocus />
+        </div>
+        
+        <button (click)="checkAnswer()" class="submit-btn">Validar</button>
+      </div>
+    </div>
+    
+    <div class="game-footer">
+      <button (click)="goToMenu()" class="back-btn">
+        <span class="back-icon">🔙</span>
+        <span>Volver al menú</span>
+      </button>
+    </div>
+  </div>

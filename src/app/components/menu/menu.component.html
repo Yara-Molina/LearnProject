@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina la Palabra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- menu.component.html -->
+<div class="game-container">
+    <div class="game-header">
+      <h1>Adivina la Palabra</h1>
+      <p class="subtitle">Diviértete aprendiendo</p>
+    </div>
+  
+    <div class="level-selection">
+      <p class="level-prompt">Selecciona un nivel para comenzar:</p>
+  
+      <div class="level-buttons">
+        <button class="level-btn level-1" (click)="startLevel(1)">
+          <div class="level-icon">1</div>
+          <div class="level-info">
+            <span class="level-title">Nivel 1</span>
+            <span class="level-desc">Principiante</span>
+          </div>
+        </button>
+  
+        <button class="level-btn level-2" (click)="startLevel(2)">
+          <div class="level-icon">2</div>
+          <div class="level-info">
+            <span class="level-title">Nivel 2</span>
+            <span class="level-desc">Intermedio</span>
+          </div>
+        </button>
+  
+        <button class="level-btn level-3" (click)="startLevel(3)">
+          <div class="level-icon">3</div>
+          <div class="level-info">
+            <span class="level-title">Nivel 3</span>
+            <span class="level-desc">Avanzado</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+    
+    <script>
+        function startLevel(level) {
+            console.log("Iniciando nivel: " + level);
+            // Aquí puedes añadir la lógica para iniciar el juego
+        }
+    </script>
+</body>
+</html>

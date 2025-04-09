@@ -1,0 +1,32 @@
+<div class="level-container">
+    <div class="game-header">
+      <h1>Nivel 3</h1>
+      <p class="subtitle">Adivina la palabra completa</p>
+    </div>
+    
+    <div class="game-content">
+      <div class="hint-container">
+        <div class="hint-label">Pista:</div>
+        <div class="hint-text">{{ hint }}</div>
+      </div>
+      
+      <div class="input-container">
+        <input 
+          type="text" 
+          [(ngModel)]="userInput" 
+          class="word-input" 
+          placeholder="Escribe tu respuesta" 
+          autocomplete="off"
+          autofocus />
+        
+        <button (click)="checkAnswer()" class="submit-btn">Enviar</button>
+      </div>
+    </div>
+    
+    <div class="game-footer">
+      <button (click)="goToMenu()" class="back-btn">
+        <span class="back-icon">🔙</span>
+        <span>Volver al menú</span>
+      </button>
+    </div>
+  </div>

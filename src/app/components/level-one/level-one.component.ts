@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../services/game.service';
-import { CommonModule } from '@angular/common';
+import { WordChallenge } from '../../models/word-chanllenge';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-level-one',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'app-palabra',
   templateUrl: './level-one.component.html',
-  styleUrl: './level-one.component.scss'
+  styleUrls: ['./level-one.component.scss'],
 })
 export class Level1Component implements OnInit {
-  imageUrl = '';
-  question = '';
-  options: string[] = [];
-  correctAnswer = '';
+  palabras: WordChallenge[] = [];
+  palabra: WordChallenge | null = null;
 
   constructor(
     private gameService: GameService,
@@ -22,16 +18,21 @@ export class Level1Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.gameService.getLevelData(1).subscribe(data => {
-      this.imageUrl = data.image;
-      this.question = data.question;
-      this.options = data.options;
-      this.correctAnswer = data.answer;
+    this.obtenerPalabra();
+  }
+
+  obtenerPalabra(): void {
+    this.gameService.getLevelData(1).subscribe((data) => {
+      this.palabras = data; 
+      this.palabra = this.obtenerPalabraAleatoria();
+      console.log('Palabra:', this.palabra);
+      console.log('Imagen URL:', this.palabra?.imagen_url);
     });
   }
 
-  checkAnswer(option: string) {
-    alert(option === this.correctAnswer ? '¡Correcto!' : 'Incorrecto');
+  obtenerPalabraAleatoria(): WordChallenge | null {
+    const indiceAleatorio = Math.floor(Math.random() * this.palabras.length);
+    return this.palabras.length > 0 ? this.palabras[indiceAleatorio] : null;
   }
 
   goToMenu() {

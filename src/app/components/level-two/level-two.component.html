@@ -6,20 +6,20 @@
   
   <div class="game-content">
     <!-- Mostrar la imagen si está disponible -->
-    <div *ngIf="imagenUrl" class="image-container">
-      <img [src]="imagenUrl" alt="Imagen de la palabra" class="word-image" />
-    </div>
-
+     @if (imagenUrl) {
+      <div class="image-container">
+        <img [src]="imagenUrl" alt="Imagen de la palabra" class="word-image" />
+      </div>
+     }
     <!-- Mostrar la palabra con el espacio en blanco -->
     <div class="word-display">
       <p class="word-with-blank">{{ palabra?.texto }}</p>
     </div>
-
-    <!-- Mostrar la pista si está disponible -->
-    <div *ngIf="clue" class="clue-container">
-      <p class="clue-text">{{ clue }}</p>
-    </div>
-
+    @if (clue) {
+      <div class="clue-container">
+        <p class="clue-text">{{ clue }}</p>
+      </div>
+    }
     <div class="input-container">
       <div class="letter-input-wrapper">
         <input 

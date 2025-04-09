@@ -11,9 +11,11 @@
     </div>
     
     <!-- Imagen de la palabra -->
-    <div *ngIf="palabra?.imagen_url" class="image-container">
-      <img [src]="palabra?.imagen_url" alt="Imagen de la palabra" class="word-image" />
-    </div>
+     @if (palabra?.imagen_url) {
+      <div class="image-container">
+        <img [src]="palabra?.imagen_url" alt="Imagen de la palabra" class="word-image" />
+      </div>
+     }
     
     <div class="input-container">
       <input 

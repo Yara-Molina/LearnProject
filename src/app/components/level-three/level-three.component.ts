@@ -3,12 +3,11 @@ import { Router } from '@angular/router';
 import { GameService } from '../../services/game.service';
 import { WordChallenge } from '../../models/word-chanllenge';  // Asegúrate de que esta ruta sea correcta
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-level-three',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './level-three.component.html',
   styleUrls: ['./level-three.component.scss']
 })
